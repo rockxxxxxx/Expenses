@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import './ExpenseForm.css';
 
-const ExpenseForm = () => {
+const ExpenseForm = ({updateExpenseArray}) => {
   const [enteredTitle, setEnteredTitle] = useState('');
   const [enteredAmount, setEnteredAmount] = useState('');
   const [enteredDate, setEnteredDate] = useState('');
@@ -11,13 +11,25 @@ const ExpenseForm = () => {
   function onSubmitClickHandler(e){
     e.preventDefault();
     console.log(enteredTitle,enteredAmount,enteredDate)
-    document.getElementById("data").innerText=`Title:${enteredTitle}, Amount:${enteredAmount}, Date:${enteredDate}`
+    document.getElementById("data").innerText=`Title:${enteredTitle}, Amount:${enteredAmount}, Date:${enteredDate}`;
+    const item = {
+      title:enteredTitle,
+      amount:enteredAmount,
+      date:enteredDate,
+    }
+
+    updateExpenseArray(item)
+    
+    setEnteredAmount('');
+    setEnteredDate('');
+    setEnteredTitle('');
+
   }
   
 
   
   return (
-    <form>
+    <form onSubmit={onSubmitClickHandler}>
       <div className='new-expense__controls'>
         <div className='new-expense__control'>
           <label>Title</label>
@@ -47,7 +59,7 @@ const ExpenseForm = () => {
         </div>
       </div>
       <div className='new-expense__actions'>
-        <button type='submit' onClick={onSubmitClickHandler}>Add Expense</button>
+        <button type='submit' >Add Expense</button>
       </div>
       <div id = "data"></div>
     </form>

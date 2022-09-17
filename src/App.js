@@ -26,16 +26,17 @@ const App = () => {
     },
   ];
 
-  // return React.createElement(
-  //   'div',
-  //   {},
-  //   React.createElement('h2', {}, "Let's get started!"),
-  //   React.createElement(Expenses, { items: expenses })
-  // );
-
+  function onNewExpensePush(data){
+    expenses.push(data);
+    console.log(data)
+    console.log("from app")
+   
+  }
+  
+ 
   return (
     <div>
-      <NewExpense />
+      <NewExpense onExpensePush={onNewExpensePush}/>
       <Expenses items={expenses} />
     </div>
   );
