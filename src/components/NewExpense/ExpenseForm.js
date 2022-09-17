@@ -11,6 +11,7 @@ const ExpenseForm = () => {
   function onSubmitClickHandler(e){
     e.preventDefault();
     console.log(enteredTitle,enteredAmount,enteredDate)
+    document.getElementById("data").innerText=`Title:${enteredTitle}, Amount:${enteredAmount}, Date:${enteredDate}`
   }
   
 
@@ -48,7 +49,9 @@ const ExpenseForm = () => {
       <div className='new-expense__actions'>
         <button type='submit' onClick={onSubmitClickHandler}>Add Expense</button>
       </div>
+      <div id = "data"></div>
     </form>
+    
   );
 };
 
